@@ -20,49 +20,13 @@ COMPILE_SDL =		NO
 #available on ubuntu or debian ect....
 XORGDEV = $(shell dpkg -s xorg-dev 2>&-)
 
-NAME =				wolf3d
+NAME =				rtv1
 
 SRC =				./sources/main.c \
 					./sources/start.c \
-					./sources/wolf_map.c \
-					./sources/wolf3d.c \
-					./sources/edit_wolf.c \
-					./sources/delta_time.c \
-					./sources/get_next_line.c \
-					./sources/wolf_get_path.c \
-					./sources/exit_wolf.c \
-					./sources/wolf_check_map.c \
-					./sources/error_text.c \
-					./sources/wolf_complete_case.c \
-					./sources/display_map.c \
-					./sources/load_texture.c \
-					./sources/clear_texture.c \
-					./sources/trace.c \
-					./sources/trace_monocolor.c \
-					./sources/init_sdl.c \
-					./sources/destroy_sdl_env.c \
-					./sources/wolf_run.c
 
 OBJS =				./main.o \
 					./start.o \
-					./wolf_map.o \
-					./wolf3d.o \
-					./edit_wolf.o \
-					./delta_time.o \
-					./get_next_line.o \
-					./wolf_get_path.o \
-					./exit_wolf.o \
-					./wolf_check_map.o \
-					./error_text.o \
-					./wolf_complete_case.o \
-					./display_map.o \
-					./load_texture.o \
-					./clear_texture.o \
-					./trace.o \
-					./trace_monocolor.o \
-					./init_sdl.o \
-					./destroy_sdl_env.o \
-					./wolf_run.o
 
 LIBFT =				./libft/libft.a
 
