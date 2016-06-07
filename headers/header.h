@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/07 11:15:59 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/07 11:26:06 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ typedef struct	s_env
 	int				width;
 	int				height;
 }				t_env;
+
+void	start(void);
 
 #endif
