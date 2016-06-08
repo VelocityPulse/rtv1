@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/08 12:25:03 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/08 16:03:30 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ typedef struct	s_rtv1
 }				t_rtv1;
 
 t_env	*ft_init_sdl(const int width, const int height, const char *name);
-void	ft_destroy_env(t_env *env);
+void	ft_destroy_sdl(t_env *env);
 
 void	start(void);
+void	ft_exit_rt(t_rtv1 *rt);
 
 #endif

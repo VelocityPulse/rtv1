@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/08 12:53:54 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/08 16:28:11 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		ft_init_rt(t_rtv1 *rt)
 	rt->t4 = 0;
 	rt->refresh = 0;
 	if (!(rt->env = ft_init_sdl(W_WIDTH, W_HEIGHT, "rtv1")))
-		ft_exit_rt(&rt);
+		ft_exit_rt(rt);
 }
 
 void			start(void)
@@ -32,6 +32,7 @@ void			start(void)
 	SDL_PushEvent(&events);
 	while (SDL_WaitEvent(&events))
 	{
+		printf("event\n");
 		if (events.type == SDL_KEYDOWN)
 			rt.scanvalue[events.key.keysym.scancode] = 1;
 		if (events.type == SDL_KEYUP)
@@ -40,7 +41,10 @@ void			start(void)
 			ft_exit_rt(&rt);
 		rt.refresh = 1;
 		while (rt.t1 != 0 && rt.t2 != 0 && rt.t3 != 0 && rt.t4 != 0)
-			usleep(10);
+		{
+			usleep(100);
+			printf("sleep\n");
+		}
 		rt.refresh = 0;
 		SDL_BlitSurface(rt.env->img, NULL, SDL_GetWindowSurface(rt.env->win),
 				NULL);

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_sdl_env.c                                  :+:      :+:    :+:   */
+/*   destroy_sdl.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/08 12:35:11 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/08 12:36:18 by cchameyr         ###   ########.fr       */
+/*   Created: 2016/06/08 14:59:38 by cchameyr          #+#    #+#             */
+/*   Updated: 2016/06/08 16:03:39 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/header.h"
+#include "../headers/header.h"
 
-void	ft_destroy_env(t_env *env)
+void	ft_destroy_sdl(t_env *env)
 {
 	SDL_FreeSurface(env->img);
-	SDL_Destroy_Window(env->win);
+	SDL_DestroyWindow(env->win);
 	SDL_Quit();
 	ft_memdel((void **)&env);
 }

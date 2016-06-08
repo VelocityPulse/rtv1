@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit_rtv1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/07 11:22:35 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/08 15:00:40 by cchameyr         ###   ########.fr       */
+/*   Created: 2016/06/08 14:56:07 by cchameyr          #+#    #+#             */
+/*   Updated: 2016/06/08 16:03:55 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
 
-int main(int argc, char **argv)
+void	ft_exit_rt(t_rtv1 *rt)
 {
-	(void)argc;
-	(void)argv;
-	start();
-	return (0);
+	ft_destroy_sdl(rt->env);
+	exit(0);
 }
