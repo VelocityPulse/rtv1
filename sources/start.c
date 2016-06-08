@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/08 12:29:02 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/08 12:53:54 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ void			start(void)
 			ft_exit_rt(&rt);
 		rt.refresh = 1;
 		while (rt.t1 != 0 && rt.t2 != 0 && rt.t3 != 0 && rt.t4 != 0)
-			sleep(0);
-		SDL_BlitSurface();
-		SDL_UpdateWindorSurface();
+			usleep(10);
+		rt.refresh = 0;
+		SDL_BlitSurface(rt.env->img, NULL, SDL_GetWindowSurface(rt.env->win),
+				NULL);
+		SDL_UpdateWindowSurface(rt.env->win);
 	}
-
 	return ;
 }
