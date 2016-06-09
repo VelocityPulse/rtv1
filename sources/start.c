@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/08 16:28:11 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/09 11:51:52 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void		ft_init_rt(t_rtv1 *rt)
 	rt->t2 = 0;
 	rt->t3 = 0;
 	rt->t4 = 0;
-	rt->refresh = 0;
 	if (!(rt->env = ft_init_sdl(W_WIDTH, W_HEIGHT, "rtv1")))
 		ft_exit_rt(rt);
 }
@@ -29,23 +28,26 @@ void			start(void)
 	SDL_Event	events;
 
 	ft_init_rt(&rt);
+	ft_create_thread(&rt);
 	SDL_PushEvent(&events);
 	while (SDL_WaitEvent(&events))
 	{
-		printf("event\n");
+		printf("------ EVENT ------\n");
 		if (events.type == SDL_KEYDOWN)
 			rt.scanvalue[events.key.keysym.scancode] = 1;
 		if (events.type == SDL_KEYUP)
 			rt.scanvalue[events.key.keysym.scancode] = 0;
 		if (events.type == SDL_QUIT || rt.scanvalue[SDL_SCANCODE_ESCAPE] == 1)
 			ft_exit_rt(&rt);
-		rt.refresh = 1;
+		rt.t1 = 1;
+		rt.t2 = 1;
+		rt.t3 = 1;
+		rt.t4 = 1;
 		while (rt.t1 != 0 && rt.t2 != 0 && rt.t3 != 0 && rt.t4 != 0)
 		{
-			usleep(100);
+			usleep(900);
 			printf("sleep\n");
 		}
-		rt.refresh = 0;
 		SDL_BlitSurface(rt.env->img, NULL, SDL_GetWindowSurface(rt.env->win),
 				NULL);
 		SDL_UpdateWindowSurface(rt.env->win);

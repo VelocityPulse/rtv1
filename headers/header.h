@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/08 16:03:30 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/09 11:50:33 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define W_WIDTH 1080
 # define W_HEIGHT 750
 
+# define THREAD_SLEEP 1000
+
 typedef struct	s_env
 {
 	SDL_Window		*win;
@@ -42,7 +44,6 @@ typedef struct	s_rtv1
 	bool	t2;
 	bool	t3;
 	bool	t4;
-	bool	refresh;
 	int		scanvalue[285];
 }				t_rtv1;
 
@@ -51,5 +52,11 @@ void	ft_destroy_sdl(t_env *env);
 
 void	start(void);
 void	ft_exit_rt(t_rtv1 *rt);
+
+void	ft_create_thread(t_rtv1 *rt);
+int		ft_thread1(void *data);
+int		ft_thread2(void *data);
+int		ft_thread3(void *data);
+int		ft_thread4(void *data);
 
 #endif

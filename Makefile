@@ -26,13 +26,15 @@ SRC =				./sources/main.c \
 					./sources/start.c \
 					./sources/init_sdl.c \
 					./sources/destroy_sdl.c \
-					./sources/exit_rtv1.c
+					./sources/exit_rtv1.c \
+					./sources/thread.c
 
 OBJS =				./main.o \
 					./start.o \
 					./init_sdl.o \
 					./destroy_sdl.o \
-					./exit_rtv1.o
+					./exit_rtv1.o \
+					./thread.o
 
 LIBFT =				./libft/libft.a
 
