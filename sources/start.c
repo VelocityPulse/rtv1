@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/09 11:51:52 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/09 13:58:28 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ static void		ft_init_rt(t_rtv1 *rt)
 	if (!(rt->env = ft_init_sdl(W_WIDTH, W_HEIGHT, "rtv1")))
 		ft_exit_rt(rt);
 }
+
+/*
+** rt->t1,2,3,4 are the status of threads
+** 1 = calculate
+** 0 = in waiting
+*/
 
 void			start(void)
 {

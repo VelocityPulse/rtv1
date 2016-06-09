@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 14:54:05 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/09 11:48:48 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/09 13:56:38 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ int		ft_thread1(void *data)
 	return (0);
 }
 
+/*
+** THREAD1
+** X O
+** O O
+*/
+
 int		ft_thread2(void *data)
 {
 	t_rtv1		*rt;
@@ -71,6 +77,12 @@ int		ft_thread2(void *data)
 	}
 	return (0);
 }
+
+/*
+** THREAD2
+** O X
+** O O
+*/
 
 int		ft_thread3(void *data)
 {
@@ -102,6 +114,12 @@ int		ft_thread3(void *data)
 	return (0);
 }
 
+/*
+** THREAD3
+** O O
+** X O
+*/
+
 int		ft_thread4(void *data)
 {
 	t_rtv1		*rt;
@@ -131,6 +149,12 @@ int		ft_thread4(void *data)
 	}
 	return (0);
 }
+
+/*
+** THREAD4
+** O O
+** O X
+*/
 
 void		ft_create_thread(t_rtv1 *rt)
 {
