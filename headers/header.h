@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/09 11:50:33 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:42:58 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,26 @@ typedef struct	s_env
 	int				height;
 }				t_env;
 
+typedef struct	s_vector
+{
+	float	x;
+	float	y;
+	float	z;
+}				t_vector;
+
+typedef struct	s_ray
+{
+	t_vector	o;
+	t_vector	d;
+}				t_ray;
+
+typedef struct	s_sphere
+{
+	int		x;
+	int		y;
+	int		radius;
+}				t_sphere;
+
 typedef struct	s_rtv1
 {
 	t_env	*env;
@@ -58,5 +78,7 @@ int		ft_thread1(void *data);
 int		ft_thread2(void *data);
 int		ft_thread3(void *data);
 int		ft_thread4(void *data);
+
+void	raytracing(int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 14:54:05 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/09 13:56:38 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:38:42 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_thread1(void *data)
 			{
 				y = -1;
 				while (++y < mid_h)
-					; /* call core */
+					raytracing(x, y);
 			}
 			rt->t1 = 0;
 		}
@@ -69,7 +69,7 @@ int		ft_thread2(void *data)
 			{
 				y = -1;
 				while (++y < mid_h)
-					; /* call core */
+					raytracing(x, y);
 			}
 			rt->t2 = 0;
 		}
@@ -105,7 +105,7 @@ int		ft_thread3(void *data)
 			{
 				y = mid_h;
 				while (++y <= W_HEIGHT)
-					; /* call core */
+					raytracing(x, y);
 			}
 			rt->t3 = 0;
 		}
@@ -141,7 +141,7 @@ int		ft_thread4(void *data)
 			{
 				y = mid_h;
 				while (++y <= W_HEIGHT)
-					; /* call core */
+					raytracing(x, y);
 			}
 			rt->t4 = 0;
 		}
