@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/13 11:08:24 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/13 11:25:27 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,18 @@ typedef struct	s_rtv1
 	int		scanvalue[285];
 }				t_rtv1;
 
-t_env	*ft_init_sdl(const int width, const int height, const char *name);
-void	ft_destroy_sdl(t_env *env);
+t_env			*ft_init_sdl(const int w, const int h, const char *name);
+void			ft_destroy_sdl(t_env *env);
 
-void	start(void);
-void	ft_exit_rt(t_rtv1 *rt);
+void			start(void);
+void			ft_exit_rt(t_rtv1 *rt);
 
-void	ft_create_thread(t_rtv1 *rt);
-int		ft_thread1(void *data);
-int		ft_thread2(void *data);
-int		ft_thread3(void *data);
-int		ft_thread4(void *data);
+void			ft_create_thread(t_rtv1 *rt);
+int				ft_thread1(void *data);
+int				ft_thread2(void *data);
+int				ft_thread3(void *data);
+int				ft_thread4(void *data);
 
-void	raytracing(int x, int y);
+void			raytracing(int x, int y);
 
 #endif

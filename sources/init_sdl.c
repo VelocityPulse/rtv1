@@ -6,13 +6,13 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 12:25:22 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/08 16:28:40 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/13 11:25:56 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
 
-t_env	*ft_init_sdl(const int width, const int height, const char *name)
+t_env	*ft_init_sdl(const int w, const int h, const char *name)
 {
 	t_env	*env;
 
