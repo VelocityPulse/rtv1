@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/09 13:58:28 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/13 15:47:36 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void			start(void)
 		rt.t4 = 1;
 		while (rt.t1 != 0 && rt.t2 != 0 && rt.t3 != 0 && rt.t4 != 0)
 		{
-			usleep(900);
+			usleep(4000);
 			printf("sleep\n");
 		}
 		SDL_BlitSurface(rt.env->img, NULL, SDL_GetWindowSurface(rt.env->win),
