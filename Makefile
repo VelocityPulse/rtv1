@@ -27,16 +27,20 @@ SRC =				./sources/main.c \
 					./sources/init_sdl.c \
 					./sources/destroy_sdl.c \
 					./sources/exit_rtv1.c \
-					./sources/thread.c
+					./sources/thread.c \
+					./sources/raytracing.c
 
 OBJS =				./main.o \
 					./start.o \
 					./init_sdl.o \
 					./destroy_sdl.o \
 					./exit_rtv1.o \
-					./thread.o
+					./thread.o \
+					./raytracing.o
 
 LIBFT =				./libft/libft.a
+
+LIBDRAW =			./libdraw/draw.a
 
 PATHSDL =			SDL2-2.0.4
 
@@ -46,7 +50,7 @@ MAKEFILESDL =		$(shell ls SDL2-2.0.4/Makefile 2>&-)
 
 DEBUGSEGFAULT =		-fsanitize=address
 
-EXTRAFLAGS =		-Wall -Wextra -Werror #$(DEBUGSEGFAULT)
+EXTRAFLAGS =		#-Wall -Wextra -Werror #$(DEBUGSEGFAULT)
 
 CC =				gcc
 
@@ -78,8 +82,8 @@ all: $(NAME)
 ifneq (,$(filter $(OUT),MAC Darwin))
 
 ifeq ($(COMPILE_SDL),YES)
-$(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
-	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
+$(NAME): $(PATHDYNLIB) $(LIBFT) $(LIBDRAW) $(OBJS)
+	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LIBDRAW) $(LFLAGS) -o $(NAME)
 	$(EDITLIB)
 
 $(PATHDYNLIB):
@@ -87,15 +91,15 @@ $(PATHDYNLIB):
 	cd $(PATHSDL) && ./configure && make -j
 
 else
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
+$(NAME): $(LIBFT) $(LIBDRAW) $(OBJS)
+	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LIBDRAW) $(LFLAGS) -o $(NAME)
 	$(EDITLIB)
 
 endif
 
 else
-$(NAME): $(PATHDYNLIB) $(LIBFT) $(OBJS)
-	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LFLAGS) -o $(NAME)
+$(NAME): $(PATHDYNLIB) $(LIBFT) $(LIBDRAW) $(OBJS)
+	$(CC) $(EXTRAFLAGS) $(OBJS) $(LIBFT) $(LIBDRAW) $(LFLAGS) -o $(NAME)
 
 
 ifeq ($(XORGDEV),)
@@ -111,21 +115,25 @@ endif
 
 endif
 
-$(OBJS): $(LIBFT)
+$(OBJS): $(LIBFT) $(LIBDRAW)
 	$(CC) $(EXTRAFLAGS) -c $(SRC)
 
 $(LIBFT):
 	make -C ./libft/
 
+$(LIBDRAW):
+	make -C ./libdraw/
+
 ifeq ($(COMPILE_SDL),YES)
 fclean: clean cleansdl
-	$(RM) $(NAME) $(LIBFT)
+	$(RM) $(NAME) $(LIBFT) $(LIBDRAW)
 	make clean -C ./libft/
+	make clean -C ./libdraw/
 	$(RM) ./$(PATHSDL)/config.log ./$(PATHSDL)/sdl2-config.cmake ./$(PATHSDL)/sdl2.pc
 
 else
 fclean: clean cleansdl
-	$(RM) $(NAME) $(LIBFT)
+	$(RM) $(NAME) $(LIBFT) $(LIBDRAW)
 	$(RM) ./$(PATHSDL)/config.log ./$(PATHSDL)/sdl2-config.cmake ./$(PATHSDL)/sdl2.pc
 
 endif
@@ -143,6 +151,7 @@ endif
 clean:
 	$(RM) $(OBJS)
 	make clean -C ./libft/
+	make clean -C ./libdraw/
 
 r: clean all
 

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/13 10:42:58 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/13 11:08:24 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdbool.h>
 # include <math.h>
 # include "../SDL2-2.0.4/include/SDL.h"
+# include "draw.h"
 # include "libft.h"
 
 # include "debug.h"
@@ -36,13 +37,6 @@ typedef struct	s_env
 	int				width;
 	int				height;
 }				t_env;
-
-typedef struct	s_vector
-{
-	float	x;
-	float	y;
-	float	z;
-}				t_vector;
 
 typedef struct	s_ray
 {
