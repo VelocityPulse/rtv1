@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/14 12:49:22 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/14 15:00:44 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,71 @@ typedef struct	s_ray
 	t_ptd3d		d;
 }				t_ray;
 
+typedef struct	s_cam
+{
+	double		x;
+	double		y;
+	double		z;
+	t_vector	dir;
+}				t_cam;
+
 typedef struct	s_sphere
 {
-	int		x;
-	int		y;
-	int		z;
-	int		radius;
+	double		x;
+	double		y;
+	double		z;
+	double		radius;
 }				t_sphere;
+
+typedef struct	s_spot
+{
+	double	x;
+	double	y;
+	double	z;
+	float	lux;
+}				t_spot;
+
+typedef struct	s_cylindre
+{
+	double		x;
+	double		y;
+	double		z;
+	double		ray_size;
+	double		height;
+	int			color;
+	t_vector	rot;
+}				t_cylindre;
+
+typedef struct	s_plan
+{
+	double		x;
+	double		y;
+	double		z;
+	double		width;
+	double		height;
+	t_vector	rot;
+}				t_plan;
+
+typedef struct	s_cone
+{
+	double		x;
+	double		y;
+	double		z;
+	double		ray_size;
+	double		height;
+	int			color;
+	t_vector	rot;
+}				t_cone;
+
+typedef struct	s_cube
+{
+	double		x;
+	double		y;
+	double		z;
+	double		size;
+	int			color;
+	t_vector	rot;
+}				t_cube;
 
 typedef struct	s_rtv1
 {
