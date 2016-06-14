@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/14 15:44:19 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/14 16:19:44 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void			ft_destroy_sdl(t_env *env);
 void			start(char *path);
 void			exit_rt(t_rtv1 *rt);
 
+int				analyse_scene(t_rtv1 *rt, t_lstline *list);
 
 void			create_thread(t_rtv1 *rt);
 int				ft_thread1(void *data);

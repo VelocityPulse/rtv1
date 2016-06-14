@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/14 15:44:26 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/14 16:20:32 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ static void		open_scene(t_rtv1 *rt, char *path)
 		list = ft_add_lstline(list, line);
 	list = ft_add_lstline(list, NULL);
 	ft_memdel((void **)&line);
-	
+	if (analyse_scene(rt, list) == 0)
+	{
+		list = ft_lstline_del(list);
+		exit_rt(rt);
+	}
 	list = ft_lstline_del(list);
 }
 
