@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/13 16:19:04 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/14 12:49:22 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdbool.h>
 # include <math.h>
 # include "../SDL2-2.0.4/include/SDL.h"
+# include "get_next_line.h"
 # include "draw.h"
 # include "libft.h"
 
@@ -65,8 +66,10 @@ typedef struct	s_rtv1
 t_env			*ft_init_sdl(const int w, const int h, const char *name);
 void			ft_destroy_sdl(t_env *env);
 
-void			start(void);
+void			start(int ac, char **av);
 void			ft_exit_rt(t_rtv1 *rt);
+
+void			ft_open_scene(t_rtv1 *rt, int ac, char **av);
 
 void			ft_create_thread(t_rtv1 *rt);
 int				ft_thread1(void *data);

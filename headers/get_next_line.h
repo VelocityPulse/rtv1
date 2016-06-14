@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/07 11:22:35 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/14 12:44:36 by cchameyr         ###   ########.fr       */
+/*   Created: 2015/12/18 14:44:27 by cchameyr          #+#    #+#             */
+/*   Updated: 2016/06/14 13:21:45 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/header.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int		main(int argc, char **argv)
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include "libft.h"
+
+# define BUFF_SIZE 32
+
+typedef struct	s_gnl
 {
-	if (argc == 2)
-		start(argc, argv);
-	else if (argc > 2)
-		ft_putendl("\n\033[31mERROR\033[0m\nToo much arguments");
-	else
-		ft_putendl("\n\033[31mERROR\033[0m\nPrecise a scene");
-	return (0);
-}
+	char		*buff;
+	char		*temp;
+	int			ret;
+}				t_gnl;
+
+int				get_next_line(const int fd, char **line);
+
+#endif

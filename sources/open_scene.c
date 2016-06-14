@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   open_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/07 11:22:35 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/14 12:44:36 by cchameyr         ###   ########.fr       */
+/*   Created: 2016/06/14 12:45:56 by cchameyr          #+#    #+#             */
+/*   Updated: 2016/06/14 12:49:04 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
 
-int		main(int argc, char **argv)
+void	ft_open_scene(t_rtv1 *rt, int ac, char **av)
 {
-	if (argc == 2)
-		start(argc, argv);
-	else if (argc > 2)
-		ft_putendl("\n\033[31mERROR\033[0m\nToo much arguments");
-	else
-		ft_putendl("\n\033[31mERROR\033[0m\nPrecise a scene");
-	return (0);
+	t_lstline	*list;
+	int			fd;
+	char		*line;
+
+	list = NULL;
+	while (get_next_line(fd, &line) > 0)
+	{
+		
+	}
 }

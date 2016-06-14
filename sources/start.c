@@ -6,18 +6,19 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/13 15:47:36 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/14 12:47:04 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
 
-static void		ft_init_rt(t_rtv1 *rt)
+static void		ft_init_rt(t_rtv1 *rt, int ac, char **av)
 {
 	rt->t1 = 0;
 	rt->t2 = 0;
 	rt->t3 = 0;
 	rt->t4 = 0;
+	ft_open_scene(rt, ac, av);
 	if (!(rt->env = ft_init_sdl(W_WIDTH, W_HEIGHT, "rtv1")))
 		ft_exit_rt(rt);
 }
@@ -28,12 +29,12 @@ static void		ft_init_rt(t_rtv1 *rt)
 ** 0 = in waiting
 */
 
-void			start(void)
+void			start(int ac, char **av)
 {
 	t_rtv1		rt;
 	SDL_Event	events;
 
-	ft_init_rt(&rt);
+	ft_init_rt(&rt, ac, av);
 	ft_create_thread(&rt);
 	SDL_PushEvent(&events);
 	while (SDL_WaitEvent(&events))

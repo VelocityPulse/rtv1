@@ -28,7 +28,9 @@ SRC =				./sources/main.c \
 					./sources/destroy_sdl.c \
 					./sources/exit_rtv1.c \
 					./sources/thread.c \
-					./sources/raytracing.c
+					./sources/raytracing.c \
+					./sources/get_next_line.c \
+					./sources/open_scene.c
 
 OBJS =				./main.o \
 					./start.o \
@@ -36,7 +38,9 @@ OBJS =				./main.o \
 					./destroy_sdl.o \
 					./exit_rtv1.o \
 					./thread.o \
-					./raytracing.o
+					./raytracing.o \
+					./get_next_line.o \
+					./open_scene.o
 
 LIBFT =				./libft/libft.a
 
