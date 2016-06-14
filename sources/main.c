@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:22:35 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/14 12:44:36 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/14 15:32:49 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		main(int argc, char **argv)
 {
 	if (argc == 2)
-		start(argc, argv);
+		start(argv[1]);
 	else if (argc > 2)
 		ft_putendl("\n\033[31mERROR\033[0m\nToo much arguments");
 	else

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/14 15:07:59 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/14 15:44:19 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,11 @@ typedef struct	s_rtv1
 t_env			*ft_init_sdl(const int w, const int h, const char *name);
 void			ft_destroy_sdl(t_env *env);
 
-void			start(int ac, char **av);
-void			ft_exit_rt(t_rtv1 *rt);
+void			start(char *path);
+void			exit_rt(t_rtv1 *rt);
 
-void			ft_open_scene(t_rtv1 *rt, int ac, char **av);
 
-void			ft_create_thread(t_rtv1 *rt);
+void			create_thread(t_rtv1 *rt);
 int				ft_thread1(void *data);
 int				ft_thread2(void *data);
 int				ft_thread3(void *data);

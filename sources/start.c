@@ -6,21 +6,37 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/14 12:47:04 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/14 15:44:26 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
 
-static void		ft_init_rt(t_rtv1 *rt, int ac, char **av)
+static void		open_scene(t_rtv1 *rt, char *path)
+{
+	t_lstline	*list;
+	int			fd;
+	char		*line;
+
+	list = NULL;
+	fd = open(path, O_RDONLY);
+	while (get_next_line(fd, &line) > 0)
+		list = ft_add_lstline(list, line);
+	list = ft_add_lstline(list, NULL);
+	ft_memdel((void **)&line);
+	
+	list = ft_lstline_del(list);
+}
+
+static void		init_rt(t_rtv1 *rt, char *path)
 {
 	rt->t1 = 0;
 	rt->t2 = 0;
 	rt->t3 = 0;
 	rt->t4 = 0;
-	ft_open_scene(rt, ac, av);
+	open_scene(rt, path);
 	if (!(rt->env = ft_init_sdl(W_WIDTH, W_HEIGHT, "rtv1")))
-		ft_exit_rt(rt);
+		exit_rt(rt);
 }
 
 /*
@@ -29,13 +45,13 @@ static void		ft_init_rt(t_rtv1 *rt, int ac, char **av)
 ** 0 = in waiting
 */
 
-void			start(int ac, char **av)
+void			start(char *path)
 {
 	t_rtv1		rt;
 	SDL_Event	events;
 
-	ft_init_rt(&rt, ac, av);
-	ft_create_thread(&rt);
+	init_rt(&rt, path);
+	create_thread(&rt);
 	SDL_PushEvent(&events);
 	while (SDL_WaitEvent(&events))
 	{
@@ -45,7 +61,7 @@ void			start(int ac, char **av)
 		if (events.type == SDL_KEYUP)
 			rt.scanvalue[events.key.keysym.scancode] = 0;
 		if (events.type == SDL_QUIT || rt.scanvalue[SDL_SCANCODE_ESCAPE] == 1)
-			ft_exit_rt(&rt);
+			exit_rt(&rt);
 		rt.t1 = 1;
 		rt.t2 = 1;
 		rt.t3 = 1;

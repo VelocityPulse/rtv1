@@ -6,13 +6,13 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 14:56:07 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/08 16:03:55 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/14 15:43:52 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
 
-void	ft_exit_rt(t_rtv1 *rt)
+void	exit_rt(t_rtv1 *rt)
 {
 	ft_destroy_sdl(rt->env);
 	exit(0);
