@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/14 15:00:44 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/14 15:07:59 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,14 +111,26 @@ typedef struct	s_cube
 	t_vector	rot;
 }				t_cube;
 
+typedef struct	s_objects
+{
+	t_spot		*spot;
+	t_sphere	*sphere;
+	t_cylindre	*cylindre;
+	t_plan		*plan;
+	t_cone		*cone;
+	t_cube		*cube;
+}				t_objects;
+
 typedef struct	s_rtv1
 {
-	t_env	*env;
-	bool	t1;
-	bool	t2;
-	bool	t3;
-	bool	t4;
-	int		scanvalue[285];
+	t_env		*env;
+	bool		t1;
+	bool		t2;
+	bool		t3;
+	bool		t4;
+	int			scanvalue[285];
+	t_cam		cam;
+	t_objects	obj;
 }				t_rtv1;
 
 t_env			*ft_init_sdl(const int w, const int h, const char *name);
