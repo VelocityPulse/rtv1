@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:20:08 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/13 16:03:05 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/15 14:39:02 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,9 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 /*
 ** private functions
 */
+
+int				ft_power(int nb, int pow);
+double			ft_atoid(char *str);
 
 void			ft_swap(int *a, int *b);
 int				ft_memlen(void **tab);

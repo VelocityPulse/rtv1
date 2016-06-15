@@ -6,13 +6,13 @@
 /*   By: cchameyr <cchameyr@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 12:55:51 by cchameyr          #+#    #+#             */
-/*   Updated: 2015/11/29 14:42:14 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/15 14:40:12 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
 	int	neg;
 	int	cpt;
@@ -35,4 +35,28 @@ int		ft_atoi(const char *str)
 		cpt++;
 	}
 	return (neg == 0 ? n : -n);
+}
+
+double		ft_atoid(char *str)
+{
+	double	result;
+	int		i;
+	char	*a;
+
+	i = -1;
+	a = NULL;
+	result = 0;
+	while (str[++i] != '.')
+		if (str[i] == '\0')
+			return (ft_atoi(str));
+	a = &str[i + 1];
+	i = -1;
+	while (a[++i])
+	{
+		if (!ft_isdigit(a[i]))
+			return (ft_atoi(str));
+	}
+	result = ft_atoi(str);
+	result += (double)ft_atoi(a) / (double)ft_power(10, ft_strlen(a));
+	return (result);
 }
