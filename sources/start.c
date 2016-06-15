@@ -6,11 +6,19 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/14 16:20:32 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/15 11:47:05 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/header.h"
+
+int				error_line(const int line)
+{
+	ft_putstr("\n\033[31mERROR\033 line : ");
+	ft_putnbr(line);
+	ft_putchar('\n');
+	return (0);
+}
 
 static void		open_scene(t_rtv1 *rt, char *path)
 {
@@ -22,7 +30,6 @@ static void		open_scene(t_rtv1 *rt, char *path)
 	fd = open(path, O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 		list = ft_add_lstline(list, line);
-	list = ft_add_lstline(list, NULL);
 	ft_memdel((void **)&line);
 	if (analyse_scene(rt, list) == 0)
 	{
@@ -79,5 +86,4 @@ void			start(char *path)
 				NULL);
 		SDL_UpdateWindowSurface(rt.env->win);
 	}
-	return ;
 }
