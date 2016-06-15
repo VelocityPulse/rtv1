@@ -6,7 +6,7 @@
 /*   By: cchameyr <cchameyr@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 12:55:51 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/15 14:40:12 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/15 15:57:25 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ double		ft_atoid(char *str)
 			return (ft_atoi(str));
 	}
 	result = ft_atoi(str);
-	result += (double)ft_atoi(a) / (double)ft_power(10, ft_strlen(a));
+	if (result < 0)
+		result -= (double)ft_atoi(a) / (double)ft_power(10, ft_strlen(a));
+	else
+		result += (double)ft_atoi(a) / (double)ft_power(10, ft_strlen(a));
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 14:59:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/08 16:03:39 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/15 15:41:47 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	ft_destroy_sdl(t_env *env)
 {
-	SDL_FreeSurface(env->img);
-	SDL_DestroyWindow(env->win);
-	SDL_Quit();
-	ft_memdel((void **)&env);
+	if (env)
+	{
+		SDL_FreeSurface(env->img);
+		SDL_DestroyWindow(env->win);
+		SDL_Quit();
+		ft_memdel((void **)&env);
+	}
 }

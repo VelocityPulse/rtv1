@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/15 11:52:42 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/15 15:19:20 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,8 @@ void			start(char *path);
 void			exit_rt(t_rtv1 *rt);
 
 int				analyse_scene(t_rtv1 *rt, t_lstline *list);
-int				analyse_3d_value(char *str, double *x, double *y, double *z);
+int				analyse_3d_value_d(char *str, double *x, double *y, double *z);
+int				analyse_3d_value_v(char *str, t_vector *v);
 
 void			create_thread(t_rtv1 *rt);
 int				ft_thread1(void *data);

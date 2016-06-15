@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 14:54:05 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/13 16:15:52 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/15 14:58:01 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ int		ft_thread4(void *data)
 ** O X
 */
 
-void		ft_create_thread(t_rtv1 *rt)
+void		create_thread(t_rtv1 *rt)
 {
 	static SDL_Thread	*thread1;
 	static SDL_Thread	*thread2;

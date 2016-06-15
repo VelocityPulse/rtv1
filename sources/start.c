@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/15 11:47:05 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/15 15:40:17 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int				error_line(const int line)
 {
-	ft_putstr("\n\033[31mERROR\033 line : ");
+	ft_putstr("\n\033[31mERROR\033[0m line : ");
 	ft_putnbr(line);
 	ft_putchar('\n');
 	return (0);

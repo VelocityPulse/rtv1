@@ -30,7 +30,8 @@ SRC =				./sources/main.c \
 					./sources/thread.c \
 					./sources/raytracing.c \
 					./sources/get_next_line.c \
-					./sources/open_scene.c
+					./sources/analyse_scene.c \
+					./sources/analyse_3d_value.c
 
 OBJS =				./main.o \
 					./start.o \
@@ -40,7 +41,8 @@ OBJS =				./main.o \
 					./thread.o \
 					./raytracing.o \
 					./get_next_line.o \
-					./open_scene.o
+					./analyse_scene.o \
+					./analyse_3d_value.o
 
 LIBFT =				./libft/libft.a
 
@@ -157,6 +159,9 @@ clean:
 	make clean -C ./libft/
 	make clean -C ./libdraw/
 
-r: clean all
+cleanr:
+	$(RM) $(OBJS) $(NAME)
+
+r: cleanr all
 
 re: fclean all
