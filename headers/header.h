@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/15 15:19:20 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/16 14:10:06 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,11 @@ void			exit_rt(t_rtv1 *rt);
 int				analyse_scene(t_rtv1 *rt, t_lstline *list);
 int				analyse_3d_value_d(char *str, double *x, double *y, double *z);
 int				analyse_3d_value_v(char *str, t_vector *v);
+int				analyse_spot(t_spot **spot, t_lstline **list, int *line);
+int				analyse_sphere(t_sphere **sphere, t_lstline **list, int *line);
+int				analyse_cylindre(t_cylindre **cyl, t_lstline **list, int *line);
+int				analyse_cone(t_cone **cone, t_lstline **list, int *line);
+int				analyse_plan(t_plan **plan, t_lstline **list, int *line);
 
 void			create_thread(t_rtv1 *rt);
 int				ft_thread1(void *data);
