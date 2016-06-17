@@ -44,7 +44,7 @@ OBJS =				./main.o \
 					./get_next_line.o \
 					./analyse_scene.o \
 					./analyse_3d_value.o \
-					./analyse_objetcs.o
+					./analyse_objects.o
 
 LIBFT =				./libft/libft.a
 

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/16 10:31:09 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/17 12:37:09 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ static void		init_rt(t_rtv1 *rt, char *path)
 	rt->t2 = 0;
 	rt->t3 = 0;
 	rt->t4 = 0;
+	rt->obj.spot = NULL;
+	rt->obj.sphere = NULL;
+	rt->obj.cylindre = NULL;
+	rt->obj.plan = NULL;
+	rt->obj.cone = NULL;
+	rt->obj.cube = NULL;
 	open_scene(rt, path);
 	if (!(rt->env = ft_init_sdl(W_WIDTH, W_HEIGHT, "rtv1")))
 		exit_rt(rt);
@@ -80,7 +86,7 @@ void			start(char *path)
 		while (rt.t1 != 0 && rt.t2 != 0 && rt.t3 != 0 && rt.t4 != 0)
 		{
 			usleep(4000);
-			printf("sleep\n");
+//			printf("sleep\n");
 		}
 		SDL_BlitSurface(rt.env->img, NULL, SDL_GetWindowSurface(rt.env->win),
 				NULL);

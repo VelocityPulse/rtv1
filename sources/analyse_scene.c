@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 15:58:04 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/16 16:32:53 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/17 12:37:52 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static int		analyse_objects(t_rtv1 *rt, t_lstline **list, int *line)
 
 	error = 0;
 	while (ft_strncmp((*list)->line, "\t\t##spot ", 9) == 0 ||
-			ft_strncmp((*list)->line, "\t\t##sphere ", 11) == 0 ||
-			ft_strncmp((*list)->line, "\t\t##cylindre ", 13) == 0 ||
-			ft_strncmp((*list)->line, "\t\t##cone ", 9) == 0 ||
-			ft_strncmp((*list)->line, "\t\t##plan ", 9) == 0)
+		ft_strncmp((*list)->line, "\t\t##sphere ", 11) == 0 ||
+		ft_strncmp((*list)->line, "\t\t##cylindre ", 13) == 0 ||
+		ft_strncmp((*list)->line, "\t\t##cone ", 9) == 0 ||
+		ft_strncmp((*list)->line, "\t\t##plan ", 9) == 0)
 	{
 		if (ft_strncmp((*list)->line, "\t\t##spot ", 9) == 0)
 			error += analyse_spot(&rt->obj.spot, list, line);
-		else if (ft_strncmp((*list)->line, "\t\t##sphere ", 11) == 0)
+/*		else if (ft_strncmp((*list)->line, "\t\t##sphere ", 11) == 0)
 			error += analyse_sphere(&rt->obj.sphere, list, line);
 		else if (ft_strncmp((*list)->line, "\t\t##cylindre ", 13) == 0)
 			error += analyse_cylindre(&rt->obj.cylindre, list, line);
@@ -33,7 +33,7 @@ static int		analyse_objects(t_rtv1 *rt, t_lstline **list, int *line)
 			error += analyse_cone(&rt->obj.cone, list, line);
 		else if (ft_strncmp((*list)->line, "\t\t##plan ", 9) == 0)
 			error += analyse_plan(&rt->obj.plan, list, line);
-		else if (ft_strcmp((*list)->line, "#End#") == 0)
+*/		else if (ft_strcmp((*list)->line, "#End#") == 0)
 			return (1);
 		if (error >= 1)
 			return (error_line(*line));
@@ -46,6 +46,7 @@ static int		analyse_cam(t_rtv1 *rt, t_lstline **list, int *line)
 	if ((*list)->line && ft_strcmp((*list)->line, "\t###Cam") == 0)
 	{
 		(*list) = (*list)->next;
+		*line += 1;
 		if (ft_strncmp((*list)->line, "\t\t", 2) == 0)
 		{
 			if (!analyse_3d_value_d(&(*list)->line[2], &rt->cam.x, &rt->cam.y,
@@ -81,7 +82,7 @@ int				analyse_scene(t_rtv1 *rt, t_lstline *list)
 			return (0);
 		line++;
 		list = list->next;
-		if (list->line && ft_strcmp(list->line, "\t###Objetcs") == 0)
+		if (list->line && ft_strcmp(list->line, "\t###Objects") == 0)
 		{
 			line++;
 			list = list->next;
@@ -89,7 +90,10 @@ int				analyse_scene(t_rtv1 *rt, t_lstline *list)
 				return (0);
 		}
 		else
+		{
+			YOLO
 			error_line(line);
+		}
 	}
 	else
 		error_line(line);
