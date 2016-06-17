@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:20:08 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/16 16:22:17 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/16 17:12:33 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int				ft_strisdigit(char *str);
 
 void			ft_swap(int *a, int *b);
 int				ft_memlen(void **tab);
+void			ft_memdel2(void ***ap);
 
 t_pt			ft_make_pt(int x, int y);
 t_ptd			ft_make_ptd(double x, double y);
