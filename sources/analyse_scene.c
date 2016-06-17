@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 15:58:04 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/17 16:57:38 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/17 17:03:03 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,11 @@ int				analyse_scene(t_rtv1 *rt, t_lstline *list)
 	rt->cam.dir.z);
 	printf("spot1 :\nx : %f, y : %f, z : %f / %f\n", rt->obj.spot[0].x,
 	rt->obj.spot[0].y, rt->obj.spot[0].z, rt->obj.spot[0].lux);
-	printf("spot1 :\nx : %f, y : %f, z : %f / %f\n", rt->obj.spot[1].x,
+	printf("spot2 :\nx : %f, y : %f, z : %f / %f\n", rt->obj.spot[1].x,
 	rt->obj.spot[1].y, rt->obj.spot[1].z, rt->obj.spot[1].lux);
+	printf("spot2 :\nx : %f, y : %f, z : %f / %f\n", rt->obj.spot[2].x,
+	rt->obj.spot[2].y, rt->obj.spot[2].z, rt->obj.spot[2].lux);
+
 
 	return (1);
 }
