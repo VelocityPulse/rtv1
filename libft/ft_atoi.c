@@ -6,11 +6,21 @@
 /*   By: cchameyr <cchameyr@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 12:55:51 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/15 15:57:25 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/19 16:06:07 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int			ft_strlen_nb(char *str)
+{
+	int		i;
+
+	i = -1;
+	while (ft_isdigit(str[++i]))
+		;
+	return (i);
+}
 
 int			ft_atoi(const char *str)
 {
@@ -47,19 +57,18 @@ double		ft_atoid(char *str)
 	a = NULL;
 	result = 0;
 	while (str[++i] != '.')
+	{
 		if (str[i] == '\0')
 			return (ft_atoi(str));
+	}
 	a = &str[i + 1];
 	i = -1;
-	while (a[++i])
-	{
-		if (!ft_isdigit(a[i]))
-			return (ft_atoi(str));
-	}
+	if (!ft_strisdigit(&a[++i]))
+		ft_atoi(str);
 	result = ft_atoi(str);
 	if (result < 0)
-		result -= (double)ft_atoi(a) / (double)ft_power(10, ft_strlen(a));
+		result -= (double)ft_atoi(a) / (double)ft_power(10, ft_strlen_nb(a));
 	else
-		result += (double)ft_atoi(a) / (double)ft_power(10, ft_strlen(a));
+		result += (double)ft_atoi(a) / (double)ft_power(10, ft_strlen_nb(a));
 	return (result);
 }
