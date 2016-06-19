@@ -32,7 +32,8 @@ SRC =				./sources/main.c \
 					./sources/get_next_line.c \
 					./sources/analyse_scene.c \
 					./sources/analyse_3d_value.c \
-					./sources/analyse_objects.c
+					./sources/analyse_objects.c \
+					./sources/analyse_objects_help.c
 
 OBJS =				./main.o \
 					./start.o \
@@ -44,7 +45,8 @@ OBJS =				./main.o \
 					./get_next_line.o \
 					./analyse_scene.o \
 					./analyse_3d_value.o \
-					./analyse_objects.o
+					./analyse_objects.o \
+					./analyse_objects_help.o
 
 LIBFT =				./libft/libft.a
 
