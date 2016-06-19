@@ -6,33 +6,46 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 12:52:24 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/17 15:10:59 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/19 14:43:17 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strisdouble(char *str)
+static int		ft_back_number(char *str)
 {
 	int		i;
-	int		dot;
 
 	i = 0;
-	dot = 0;
 	while (str[i] == ' ')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
+	return (i);
+}
+
+
+int				ft_strisdouble(char *str)
+{
+	int		i;
+	int		dot;
+	int		end;
+
+	dot = 0;
+	end = 0;
+	i = ft_back_number(str);
 	while (str[i])
 	{
-		if (ft_isdigit(str[i]))
+		if (ft_isdigit(str[i]) && end == 0)
 			;
-		else if (str[i] == '.')
+		else if (str[i] == '.' && end == 0)
 		{
 			dot++;
 			if (dot > 1)
 				return (0);
 		}
+		else if (str[i] == ' ')
+			end = 1;
 		else
 			return (0);
 		i++;
