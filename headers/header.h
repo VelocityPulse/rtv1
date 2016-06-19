@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/16 14:10:06 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/19 12:54:29 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ typedef struct	s_sphere
 	double		x;
 	double		y;
 	double		z;
+	t_vector	dir;
 	double		radius;
+	int			color;
 }				t_sphere;
 
 typedef struct	s_spot
@@ -137,6 +139,7 @@ t_env			*ft_init_sdl(const int w, const int h, const char *name);
 void			ft_destroy_sdl(t_env *env);
 
 int				error_line(const int line);
+void			next_line(t_lstline **list, int *line);
 
 void			start(char *path);
 void			exit_rt(t_rtv1 *rt);
@@ -146,6 +149,7 @@ int				analyse_3d_value_d(char *str, double *x, double *y, double *z);
 int				analyse_3d_value_v(char *str, t_vector *v);
 int				analyse_spot(t_spot **spot, t_lstline **list, int *line);
 int				analyse_sphere(t_sphere **sphere, t_lstline **list, int *line);
+int				analyse_sphere_help(char **str, t_sphere *sphere);
 int				analyse_cylindre(t_cylindre **cyl, t_lstline **list, int *line);
 int				analyse_cone(t_cone **cone, t_lstline **list, int *line);
 int				analyse_plan(t_plan **plan, t_lstline **list, int *line);

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/17 12:37:09 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/19 12:43:22 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			start(char *path)
 	SDL_PushEvent(&events);
 	while (SDL_WaitEvent(&events))
 	{
-		printf("------ EVENT ------\n");
+//		printf("------ EVENT ------\n");
 		if (events.type == SDL_KEYDOWN)
 			rt.scanvalue[events.key.keysym.scancode] = 1;
 		if (events.type == SDL_KEYUP)

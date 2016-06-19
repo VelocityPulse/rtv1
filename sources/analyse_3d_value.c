@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/15 11:30:20 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/17 15:25:55 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/19 15:07:48 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int				analyse_3d_value_d(char *str, double *x, double *y, double *z)
 	*x = ft_atoid(list_value[0]);
 	*y = ft_atoid(list_value[1]);
 	*z = ft_atoid(list_value[2]);
-	ft_memdel((void **)&list_value[0]);
-	ft_memdel((void **)&list_value[1]);
-	ft_memdel((void **)&list_value[2]);
-	free(list_value);
+	ft_memdel2((void ***)&list_value);
 	return (1);
 }
 
@@ -53,9 +50,6 @@ int				analyse_3d_value_v(char *str, t_vector *v)
 	v->x = ft_atoid(list_value[0]);
 	v->y = ft_atoid(list_value[1]);
 	v->z = ft_atoid(list_value[2]);
-	ft_memdel((void **)&list_value[0]);
-	ft_memdel((void **)&list_value[1]);
-	ft_memdel((void **)&list_value[2]);
-	free(list_value);
+	ft_memdel2((void ***)&list_value);
 	return (1);
 }

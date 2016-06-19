@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 14:54:05 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/15 14:58:01 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/19 12:43:41 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		ft_thread1(void *data)
 	{
 		if (rt->t1 == 1)
 		{
-			ft_putstr("core 1\n");
+//			ft_putstr("core 1\n");
 			x = -1;
 			while (++x <= mid_w)
 			{
@@ -63,7 +63,7 @@ int		ft_thread2(void *data)
 	{
 		if (rt->t2 == 1)
 		{
-			ft_putstr("core 2\n");
+//			ft_putstr("core 2\n");
 			x = mid_w;
 			while (++x < W_WIDTH)
 			{
@@ -99,7 +99,7 @@ int		ft_thread3(void *data)
 	{
 		if (rt->t3 == 1)
 		{
-			ft_putstr("core 3\n");
+//			ft_putstr("core 3\n");
 			x = -1;
 			while (++x <= mid_w)
 			{
@@ -135,7 +135,7 @@ int		ft_thread4(void *data)
 	{
 		if (rt->t4 == 1)
 		{
-			ft_putstr("core 4\n");
+//			ft_putstr("core 4\n");
 			x = mid_w;
 			while (++x < W_WIDTH)
 			{
