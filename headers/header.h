@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/19 12:54:29 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/20 12:39:39 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef struct	s_sphere
 	double		x;
 	double		y;
 	double		z;
-	t_vector	dir;
 	double		radius;
 	int			color;
 }				t_sphere;
@@ -89,6 +88,7 @@ typedef struct	s_plan
 	double		z;
 	double		width;
 	double		height;
+	int			color;
 	t_vector	rot;
 }				t_plan;
 
@@ -149,10 +149,15 @@ int				analyse_3d_value_d(char *str, double *x, double *y, double *z);
 int				analyse_3d_value_v(char *str, t_vector *v);
 int				analyse_spot(t_spot **spot, t_lstline **list, int *line);
 int				analyse_sphere(t_sphere **sphere, t_lstline **list, int *line);
-int				analyse_sphere_help(char **str, t_sphere *sphere);
 int				analyse_cylindre(t_cylindre **cyl, t_lstline **list, int *line);
 int				analyse_cone(t_cone **cone, t_lstline **list, int *line);
 int				analyse_plan(t_plan **plan, t_lstline **list, int *line);
+
+int				analyse_slash(char *str, int nb_value);
+int				analyse_sphere_help(char *line, char **str, t_sphere *sphere);
+int				analyse_cylindre_help(char *line, char **str, t_cylindre *cyl);
+int				analyse_cone_help(char *line, char **str, t_cone *cone);
+int				analyse_plan_help(char *line, char **str, t_plan *plan);
 
 void			create_thread(t_rtv1 *rt);
 int				ft_thread1(void *data);

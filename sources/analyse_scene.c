@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 15:58:04 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/19 13:02:26 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/20 12:26:38 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ static int		analyse_objects(t_rtv1 *rt, t_lstline **list, int *line)
 			error += analyse_spot(&rt->obj.spot, list, line);
 		else if (ft_strncmp((*list)->line, "\t\t##sphere ", 11) == 0)
 			error += analyse_sphere(&rt->obj.sphere, list, line);
-/*		else if (ft_strncmp((*list)->line, "\t\t##cylindre ", 13) == 0)
+		else if (ft_strncmp((*list)->line, "\t\t##cylindre ", 13) == 0)
 			error += analyse_cylindre(&rt->obj.cylindre, list, line);
 		else if (ft_strncmp((*list)->line, "\t\t##cone ", 9) == 0)
 			error += analyse_cone(&rt->obj.cone, list, line);
 		else if (ft_strncmp((*list)->line, "\t\t##plan ", 9) == 0)
 			error += analyse_plan(&rt->obj.plan, list, line);
-*/		else if (ft_strncmp((*list)->line, "#End#", 5) == 0)
+		else if (ft_strncmp((*list)->line, "#End#", 5) == 0)
 			return (1);
 		if (error >= 1)
 			return (error_line(*line));

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 11:17:37 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/19 15:51:05 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/20 12:43:15 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@ int		analyse_spot(t_spot **spot, t_lstline **list, int *line)
 		return (1);
 	nb_obj = ft_atoi(&(*list)->line[9]);
 	i = -1;
-	*spot = (t_spot *)ft_memalloc(sizeof(t_spot) * nb_obj);
+	*spot = (t_spot *)ft_memalloc(sizeof(t_spot) * (nb_obj + 1));
 	while (++i < nb_obj)
 	{
 		next_line(list, line);
 		if (ft_strncmp((*list)->line, "\t\t\t", 3) != 0)
 			return (1);
 		str = ft_strsplit(&(*list)->line[3], '/');
-		if (ft_memlen((void **)str) != 2 ||
+		if (!analyse_slash((*list)->line, 2) ||
+		ft_memlen((void **)str) != 2 ||
 		!analyse_3d_value_d(str[0], &(*spot)[i].x, &(*spot)[i].y,
 		&(*spot)[i].z) || !ft_strisdouble(str[1]))
 			return (1);
@@ -50,14 +51,14 @@ int		analyse_sphere(t_sphere **sphere, t_lstline **list, int *line)
 		return (1);
 	nb_obj = ft_atoi(&(*list)->line[11]);
 	i = -1;
-	*sphere = (t_sphere *)ft_memalloc(sizeof(t_sphere) * nb_obj);
+	*sphere = (t_sphere *)ft_memalloc(sizeof(t_sphere) * (nb_obj + 1));
 	while (++i < nb_obj)
 	{
 		next_line(list, line);
 		if (ft_strncmp((*list)->line, "\t\t\t", 3 != 0))
 			return (1);
 		str = ft_strsplit(&(*list)->line[3], '/');
-		if (!analyse_sphere_help(str, &(*sphere)[i]))
+		if (!analyse_sphere_help((*list)->line, str, &(*sphere)[i]))
 			return (1);
 		(*sphere)[i].radius = ft_atoid(str[1]);
 		(*sphere)[i].color = ft_atoi(str[2]);
@@ -66,6 +67,92 @@ int		analyse_sphere(t_sphere **sphere, t_lstline **list, int *line)
 	next_line(list, line);
 	return (0);
 }
+
+int		analyse_cylindre(t_cylindre **cyl, t_lstline **list, int *line)
+{
+	int		nb_obj;
+	char	**str;
+	int		i;
+
+	if (*cyl != NULL || !ft_strisdigit(&(*list)->line[13]))
+		return (1);
+	nb_obj = ft_atoi(&(*list)->line[13]);
+	i = -1;
+	*cyl = (t_cylindre *)ft_memalloc(sizeof(t_cylindre) * (nb_obj + 1));
+	while (++i < nb_obj)
+	{
+		next_line(list, line);
+		if (ft_strncmp((*list)->line, "\t\t\t", 3 != 0))
+			return (1);
+		str = ft_strsplit(&(*list)->line[3], '/');
+		if (!analyse_cylindre_help((*list)->line, str, &(*cyl)[i]))
+			return (1);
+		(*cyl)[i].ray_size = ft_atoid(str[1]);
+		(*cyl)[i].height = ft_atoid(str[2]);
+		(*cyl)[i].color = ft_atoi(str[3]);
+		ft_memdel2((void ***)&str);
+	}
+	next_line(list, line);
+	return (0);
+}
+
+int		analyse_cone(t_cone **cone, t_lstline **list, int *line)
+{
+	int		nb_obj;
+	char	**str;
+	int		i;
+
+	if (*cone != NULL || !ft_strisdigit(&(*list)->line[9]))
+		return (1);
+	nb_obj = ft_atoi(&(*list)->line[9]);
+	i = -1;
+	*cone = (t_cone *)ft_memalloc(sizeof(t_cone) * (nb_obj + 1));
+	while (++i < nb_obj)
+	{
+		next_line(list, line);
+		if (ft_strncmp((*list)->line, "\t\t\t", 3) != 0)
+			return (1);
+		str = ft_strsplit(&(*list)->line[3], '/');
+		if (!analyse_cone_help((*list)->line, str, &(*cone)[i]))
+			return (1);
+		(*cone)[i].ray_size = ft_atoid(str[1]);
+		(*cone)[i].height = ft_atoid(str[2]);
+		(*cone)[i].color = ft_atoi(str[3]);
+		ft_memdel2((void ***)&str);
+	}
+	next_line(list, line);
+	return (0);
+}
+
+int		analyse_plan(t_plan **plan, t_lstline **list, int *line)
+{
+	int		nb_obj;
+	char	**str;
+	int		i;
+
+	if (*plan != NULL || !ft_strisdigit(&(*list)->line[9]))
+		return (1);
+	nb_obj = ft_atoi(&(*list)->line[9]);
+	i = -1;
+	*plan = (t_plan *)ft_memalloc(sizeof(t_plan) * (nb_obj + 1));
+	while (++i < nb_obj)
+	{
+		next_line(list, line);
+		if (ft_strncmp((*list)->line,"\t\t\t", 3) != 0)
+			return (1);
+		str = ft_strsplit(&(*list)->line[3], '/');
+		if (!analyse_plan_help((*list)->line, str, &(*plan)[i]))
+			return (1);
+		(*plan)[i].height = (unsigned)ft_atoid(str[1]);
+		(*plan)[i].width = (unsigned)ft_atoid(str[2]);
+		(*plan)[i].color = (unsigned int)ft_atoi(str[3]);
+		ft_memdel2((void ***)&str);
+	}
+	next_line(list, line);
+	return (0);
+}
+
+
 
 /*
 ** return 0 is a succes
