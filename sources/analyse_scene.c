@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 15:58:04 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/20 12:26:38 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/20 13:47:03 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,12 @@ int				analyse_scene(t_rtv1 *rt, t_lstline *list)
 	rt->obj.spot[1].y, rt->obj.spot[1].z, rt->obj.spot[1].lux);
 	printf("spot3 :\n%f %f %f / %f\n", rt->obj.spot[2].x,
 	rt->obj.spot[2].y, rt->obj.spot[2].z, rt->obj.spot[2].lux);
-	printf("sphere 1 :\n%f %f %f / %f / %d / %f %f %f\n", rt->obj.sphere[0].x,
+	printf("sphere 1 :\n%f %f %f / %f / %d\n", rt->obj.sphere[0].x,
 		rt->obj.sphere[0].y, rt->obj.sphere[0].z, rt->obj.sphere[0].radius,
-		rt->obj.sphere[0].color, rt->obj.sphere[0].dir.x, rt->obj.sphere[0].dir.y,
-		rt->obj.sphere[0].dir.z);
-	printf("sphere 2 :\n%f %f %f / %f / %d / %f %f %f\n", rt->obj.sphere[1].x,
+		rt->obj.sphere[0].color);
+	printf("sphere 2 :\n%f %f %f / %f / %d\n", rt->obj.sphere[1].x,
 		rt->obj.sphere[1].y, rt->obj.sphere[1].z, rt->obj.sphere[1].radius,
-		rt->obj.sphere[1].color, rt->obj.sphere[1].dir.x, rt->obj.sphere[1].dir.y,
-		rt->obj.sphere[1].dir.z);
+		rt->obj.sphere[1].color);
 
 
 	return (1);
