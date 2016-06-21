@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 11:17:37 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/20 14:02:49 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/21 10:36:13 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ int		analyse_spot(t_spot **spot, t_lstline **list, int *line)
 		if (ft_strncmp((*list)->line, "\t\t\t", 3) != 0)
 			return (1);
 		str = ft_strsplit(&(*list)->line[3], '/');
-		if (!analyse_slash((*list)->line, 2) ||
-		ft_memlen((void **)str) != 2 ||
+		if (!analyse_slash((*list)->line, 2) || ft_memlen((void **)str) != 2 ||
 		!analyse_3d_value_d(str[0], &(*spot)[i].x, &(*spot)[i].y,
 		&(*spot)[i].z) || !ft_strisdouble(str[1]))
 			return (1);
 		(*spot)[i].lux = ft_absd(ft_atoid(str[1]));
 		ft_memdel2((void ***)&str);
 	}
+	(*spot)[nb_obj].end = -1;
 	next_line(list, line);
 	return (0);
 }
@@ -64,6 +64,7 @@ int		analyse_sphere(t_sphere **sphere, t_lstline **list, int *line)
 		(*sphere)[i].color = ft_atoi(str[2]);
 		ft_memdel2((void ***)&str);
 	}
+	(*sphere)[nb_obj].end = -1;
 	next_line(list, line);
 	return (0);
 }
@@ -92,6 +93,7 @@ int		analyse_cylindre(t_cylindre **cyl, t_lstline **list, int *line)
 		(*cyl)[i].color = ft_atoi(str[3]);
 		ft_memdel2((void ***)&str);
 	}
+	(*cyl)[nb_obj].end = -1;
 	next_line(list, line);
 	return (0);
 }
@@ -120,6 +122,7 @@ int		analyse_cone(t_cone **cone, t_lstline **list, int *line)
 		(*cone)[i].color = ft_atoi(str[3]);
 		ft_memdel2((void ***)&str);
 	}
+	(*cone)[nb_obj].end = -1;
 	next_line(list, line);
 	return (0);
 }
@@ -138,7 +141,7 @@ int		analyse_plan(t_plan **plan, t_lstline **list, int *line)
 	while (++i < nb_obj)
 	{
 		next_line(list, line);
-		if (ft_strncmp((*list)->line,"\t\t\t", 3) != 0)
+		if (ft_strncmp((*list)->line, "\t\t\t", 3) != 0)
 			return (1);
 		str = ft_strsplit(&(*list)->line[3], '/');
 		if (!analyse_plan_help((*list)->line, str, &(*plan)[i]))
@@ -148,11 +151,10 @@ int		analyse_plan(t_plan **plan, t_lstline **list, int *line)
 		(*plan)[i].color = ft_atoi(str[3]);
 		ft_memdel2((void ***)&str);
 	}
+	(*plan)[nb_obj].end = -1;
 	next_line(list, line);
 	return (0);
 }
-
-
 
 /*
 ** return 0 is a succes
