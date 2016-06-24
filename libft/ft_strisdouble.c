@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 12:52:24 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/24 10:59:49 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/24 14:55:55 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static int		ft_back_number(char *str)
 		i++;
 	return (i);
 }
-
 
 int				ft_strisdouble(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/24 10:57:26 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/24 12:06:42 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/24 14:55:02 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,11 @@ static int		ft_back_number(char *str)
 	return (i);
 }
 
-int				ft_strishexa(char *str)
+static int		ft_strishexa_loop(char *str, int i)
 {
-	int		i;
 	int		end;
-	char	*pref;
 
 	end = 0;
-	i = ft_back_number(str);
-	pref = ft_strstr(str, "0x");
-	if (pref)
-	{
-		if (str[i] != *pref)
-			return (0);
-		i += 2;
-	}
 	while (str[i])
 	{
 		if (ft_ishexa(str[i]) && !end)
@@ -46,12 +36,24 @@ int				ft_strishexa(char *str)
 		else if (str[i] == ' ')
 			end = 1;
 		else
-		{
-			ft_putstr("YOLO\n");
 			return (0);
-		}
 		i++;
 	}
 	return (1);
+}
 
+int				ft_strishexa(char *str)
+{
+	int		i;
+	char	*pref;
+
+	i = ft_back_number(str);
+	pref = ft_strstr(str, "0x");
+	if (pref)
+	{
+		if (&str[i] != pref)
+			return (0);
+		i += 2;
+	}
+	return (ft_strishexa_loop(str, i));
 }
