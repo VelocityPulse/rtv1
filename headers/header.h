@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/20 12:39:39 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/21 10:31:42 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct	s_sphere
 	double		z;
 	double		radius;
 	int			color;
+	int			end;
 }				t_sphere;
 
 typedef struct	s_spot
@@ -68,6 +69,7 @@ typedef struct	s_spot
 	double	y;
 	double	z;
 	float	lux;
+	int		end;
 }				t_spot;
 
 typedef struct	s_cylindre
@@ -79,6 +81,7 @@ typedef struct	s_cylindre
 	double		height;
 	int			color;
 	t_vector	rot;
+	int			end;
 }				t_cylindre;
 
 typedef struct	s_plan
@@ -90,6 +93,7 @@ typedef struct	s_plan
 	double		height;
 	int			color;
 	t_vector	rot;
+	int			end;
 }				t_plan;
 
 typedef struct	s_cone
@@ -101,6 +105,7 @@ typedef struct	s_cone
 	double		height;
 	int			color;
 	t_vector	rot;
+	int			end;
 }				t_cone;
 
 typedef struct	s_cube
@@ -111,6 +116,8 @@ typedef struct	s_cube
 	double		size;
 	int			color;
 	t_vector	rot;
+	int			end;
+
 }				t_cube;
 
 typedef struct	s_objects
