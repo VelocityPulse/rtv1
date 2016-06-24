@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strisdouble.c                                   :+:      :+:    :+:   */
+/*   ft_strishexa.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/17 12:52:24 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/24 10:59:49 by cchameyr         ###   ########.fr       */
+/*   Created: 2016/06/24 10:57:26 by cchameyr          #+#    #+#             */
+/*   Updated: 2016/06/24 11:30:04 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,25 @@ static int		ft_back_number(char *str)
 	return (i);
 }
 
-
-int				ft_strisdouble(char *str)
+int				ft_strishexa(char *str)
 {
 	int		i;
-	int		dot;
-	int		end;
+	char	*pref;
 
-	dot = 0;
-	end = 0;
 	i = ft_back_number(str);
+	pref = ft_strstr(str, "0x");
+	if (pref)
+	{
+		if (str[i] != *pref)
+			return (0);
+		i += 2;
+	}
 	while (str[i])
 	{
-		if (ft_isdigit(str[i]) && end == 0)
-			;
-		else if (str[i] == '.' && end == 0)
-		{
-			dot++;
-			if (dot > 1)
-				return (0);
-		}
-		else if (str[i] == ' ')
-			end = 1;
-		else
+		if (!ft_ishexa(str[i]))
 			return (0);
 		i++;
 	}
 	return (1);
+
 }

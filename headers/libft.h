@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:20:08 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/24 10:54:22 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/24 11:29:55 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ int				ft_abs(int a);
 double			ft_absd(double a);
 double			ft_atoid(char *str);
 int				ft_atoi_base(const char *str, int base);
+int				ft_ishexa(int c);
+int				ft_strishexa(char *str);
 int				ft_strisdigit(char *str);
 int				ft_strisdouble(char *str);
 
