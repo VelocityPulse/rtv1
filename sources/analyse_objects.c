@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 11:17:37 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/24 12:13:11 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/24 14:06:33 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ int		analyse_cone(t_cone **cone, t_lstline **list, int *line)
 			return (1);
 		(*cone)[i].ray_size = ft_absd(ft_atoid(str[1]));
 		(*cone)[i].height = ft_absd(ft_atoid(str[2]));
-		(*cone)[i].color = ft_atoi(str[3]);
 		ft_memdel2((void ***)&str);
 	}
 	(*cone)[nb_obj].end = -1;
@@ -146,7 +145,6 @@ int		analyse_plan(t_plan **plan, t_lstline **list, int *line)
 			return (1);
 		(*plan)[i].height = ft_absd(ft_atoid(str[1]));
 		(*plan)[i].width = ft_absd(ft_atoid(str[2]));
-		(*plan)[i].color = ft_atoi(str[3]);
 		ft_memdel2((void ***)&str);
 	}
 	(*plan)[nb_obj].end = -1;
