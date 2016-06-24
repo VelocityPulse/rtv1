@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 11:17:37 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/21 10:36:13 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/24 12:13:11 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int		analyse_sphere(t_sphere **sphere, t_lstline **list, int *line)
 		if (!analyse_sphere_help((*list)->line, str, &(*sphere)[i]))
 			return (1);
 		(*sphere)[i].radius = ft_absd(ft_atoid(str[1]));
-		(*sphere)[i].color = ft_atoi(str[2]);
 		ft_memdel2((void ***)&str);
 	}
 	(*sphere)[nb_obj].end = -1;
@@ -90,7 +89,6 @@ int		analyse_cylindre(t_cylindre **cyl, t_lstline **list, int *line)
 			return (1);
 		(*cyl)[i].ray_size = ft_absd(ft_atoid(str[1]));
 		(*cyl)[i].height = ft_absd(ft_atoid(str[2]));
-		(*cyl)[i].color = ft_atoi(str[3]);
 		ft_memdel2((void ***)&str);
 	}
 	(*cyl)[nb_obj].end = -1;
