@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:33:51 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/13 16:21:09 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/27 15:08:42 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_ptd3d		ft_normalize(t_ptd3d v)
 {
 	float	i;
 
-	i = 1 / sqrt((v.x * v.x) + (v.y * v.y) + (v.y * v.y));
+	i = 1 / sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
 	return (ft_make_ptd3d(v.x * i, v.y * i, v.z * i));
 }
 
@@ -65,7 +65,7 @@ void	raytracing(int x, int y, t_env *env)
 
 	sphere.x = 0;
 	sphere.y = 0;
-	sphere.z = 10000;
+	sphere.z = 30;
 	sphere.radius = 10;
 	A = ft_make_ptd3d(0, 0, 0);
 	B = ft_make_ptd3d(x - (W_WIDTH / 2), y - (W_HEIGHT / 2),
