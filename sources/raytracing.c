@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:33:51 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/28 15:57:48 by                  ###   ########.fr       */
+/*   Updated: 2016/06/28 16:54:36 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,43 @@ t_ptd3d		ft_normalize(t_ptd3d v)
 	return (ft_make_ptd3d(v.x * i, v.y * i, v.z * i));
 }
 
-int		ft_intersection_sphere(t_sphere sphere, t_ray ray, int *t)
+int		ft_intersection_cylindre(t_cylindre cyl, t_ray ray, int *t, double ray_size)
+{
+	float		D;
+	double		t0;
+	double		t1;
+	int			ret;
+	double		a;
+	double		b;
+	double		c;
+
+	ray.o = ft_make_ptd3d(ray.o.x - cyl.x, ray.o.y - cyl.y, 0);
+	a = (ray.d.x * ray.d.x) + (ray.d.y * ray.d.y);
+	b = (2 * ray.o.x * ray.d.x) + (2 * ray.o.y * ray.d.y);
+	c = (ray.o.x * ray.o.x) + (ray.o.y * ray.o.y) + (ray_size * ray_size);
+
+	D = (b * b) - 4 * a * c;
+
+	if (D < 0)
+		return (0);
+	t0 = (-b + sqrt(D)) / (2 * a);
+	t1 = (-b - sqrt(D)) / (2 * a);
+	ret = 0;
+
+	if (t0 > 0.1 && t0 < *t)
+	{
+		*t = t0;
+		ret = 1;
+	}
+	if (t1 > 0.1 && t1 < *t)
+	{
+		*t = t1;
+		ret = 1;
+	} 
+	return (ret);
+}
+
+int		ft_intersection_sphere(t_sphere sphere, t_ray ray, int *t, double radius)
 {
 	t_vector	dist;
 	float		D;
@@ -35,7 +71,7 @@ int		ft_intersection_sphere(t_sphere sphere, t_ray ray, int *t)
 	ray.o = ft_make_ptd3d(ray.o.x - sphere.x, ray.o.y - sphere.y, ray.o.z - sphere.z);
 	a = (ray.d.x * ray.d.x) + (ray.d.y * ray.d.y) + (ray.d.z * ray.d.z);
 	b = (2 * ray.o.x * ray.d.x) + (2 * ray.o.y * ray.d.y) + (2 * ray.o.z * ray.d.z);
-	c = (ray.o.x * ray.o.x) + (ray.o.y * ray.o.y) + (ray.o.z * ray.o.z) - 1;
+	c = (ray.o.x * ray.o.x) + (ray.o.y * ray.o.y) + (ray.o.z * ray.o.z) - (radius * radius);
 
 	D = (b * b) - 4 * a * c;
 
@@ -65,13 +101,20 @@ void	raytracing(int x, int y, t_env *env)
 	t_ptd3d		ray_dir;
 	t_ray		ray;
 	t_sphere	sphere;
+	t_cylindre	cyl;
 	int			coef;
 	int			inter;
 
 	sphere.x = 0;
 	sphere.y = 0;
 	sphere.z = 30;
-	sphere.radius = 10;
+	sphere.radius = 20;
+
+	cyl.x = 0;
+	cyl.y = 0;
+	cyl.z = 30;
+	cyl.ray_size = 20;
+
 	A = ft_make_ptd3d(0, 0, 0);
 	B = ft_make_ptd3d(x - (W_WIDTH / 2), y - (W_HEIGHT / 2),
 			-(W_WIDTH / (2 * tan(30/2))));
@@ -81,8 +124,17 @@ void	raytracing(int x, int y, t_env *env)
 	ray.o = A;
 	ray.d = ray_dir;
 	coef = 4000;
-	inter = ft_intersection_sphere(sphere, ray, &coef);
+//	inter = ft_intersection_sphere(sphere, ray, &coef, sphere.radius);
 	int color = 0x22aa22;
-	if ((inter > -1 || inter < -1) && coef < 4000)
-		ft_memcpy(env->img->pixels + x * env->img->format->BytesPerPixel + y * env->img->pitch, &color, env->img->format->BytesPerPixel);
+//	if ((inter > -1 || inter < -1) && coef < 4000)
+//		ft_memcpy(env->img->pixels + x * env->img->format->BytesPerPixel +
+//		y * env->img->pitch, &color, env->img->format->BytesPerPixel);
+//	else
+//	{
+		coef = 4000;
+		inter = ft_intersection_cylindre(cyl, ray, &coef, cyl.ray_size);
+		if ((inter > -1 || inter < -1) && coef < 4000)
+			ft_memcpy(env->img->pixels + x * env->img->format->BytesPerPixel +
+			y * env->img->pitch, &color, env->img->format->BytesPerPixel);
+//	}
 }
