@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:33:51 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/27 15:08:42 by                  ###   ########.fr       */
+/*   Updated: 2016/06/28 15:57:48 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,26 @@ t_ptd3d		ft_normalize(t_ptd3d v)
 int		ft_intersection_sphere(t_sphere sphere, t_ray ray, int *t)
 {
 	t_vector	dist;
-	float		b;
-	float		d;
+	float		D;
 	double		t0;
 	double		t1;
 	int			ret;
-
+	double		a;
+	double		b;
+	double		c;
 
 	dist = ft_make_vector(sphere.x, sphere.y, sphere.z);
-	b = (ray.d.x * dist.x) + (ray.d.y * dist.y) + (ray.d.z * dist.z);
-	d = (b * b) - ((dist.x * dist.x) + (dist.y * dist.y) + (dist.z * dist.z)) + sphere.radius * sphere.radius;
+	ray.o = ft_make_ptd3d(ray.o.x - sphere.x, ray.o.y - sphere.y, ray.o.z - sphere.z);
+	a = (ray.d.x * ray.d.x) + (ray.d.y * ray.d.y) + (ray.d.z * ray.d.z);
+	b = (2 * ray.o.x * ray.d.x) + (2 * ray.o.y * ray.d.y) + (2 * ray.o.z * ray.d.z);
+	c = (ray.o.x * ray.o.x) + (ray.o.y * ray.o.y) + (ray.o.z * ray.o.z) - 1;
 
-	if (d < 0)
+	D = (b * b) - 4 * a * c;
+
+	if (D < 0)
 		return (0);
-	t0 = b - sqrt(d);
-	t1 = b + sqrt(d);
+	t0 = (-b + sqrt(D)) / (2 * a);
+	t1 = (-b - sqrt(D)) / (2 * a);
 	ret = 0;
 
 	if (t0 > 0.1 && t0 < *t)
@@ -49,7 +54,7 @@ int		ft_intersection_sphere(t_sphere sphere, t_ray ray, int *t)
 	{
 		*t = t1;
 		ret = 1;
-	}
+	} 
 	return (ret);
 }
 
