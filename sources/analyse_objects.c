@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 11:17:37 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/24 14:06:33 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/29 14:28:52 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,30 +124,30 @@ int		analyse_cone(t_cone **cone, t_lstline **list, int *line)
 	return (0);
 }
 
-int		analyse_plan(t_plan **plan, t_lstline **list, int *line)
+int		analyse_plan(t_plane **plane, t_lstline **list, int *line)
 {
 	int		nb_obj;
 	char	**str;
 	int		i;
 
-	if (*plan != NULL || !ft_strisdigit(&(*list)->line[9]))
+	if (*plane != NULL || !ft_strisdigit(&(*list)->line[9]))
 		return (1);
 	nb_obj = ft_atoi(&(*list)->line[9]);
 	i = -1;
-	*plan = (t_plan *)ft_memalloc(sizeof(t_plan) * (nb_obj + 1));
+	*plane = (t_plane *)ft_memalloc(sizeof(t_plane) * (nb_obj + 1));
 	while (++i < nb_obj)
 	{
 		next_line(list, line);
 		if (ft_strncmp((*list)->line, "\t\t\t", 3) != 0)
 			return (1);
 		str = ft_strsplit(&(*list)->line[3], '/');
-		if (!analyse_plan_help((*list)->line, str, &(*plan)[i]))
+		if (!analyse_plan_help((*list)->line, str, &(*plane)[i]))
 			return (1);
-		(*plan)[i].height = ft_absd(ft_atoid(str[1]));
-		(*plan)[i].width = ft_absd(ft_atoid(str[2]));
+		(*plane)[i].height = ft_absd(ft_atoid(str[1]));
+		(*plane)[i].width = ft_absd(ft_atoid(str[2]));
 		ft_memdel2((void ***)&str);
 	}
-	(*plan)[nb_obj].end = -1;
+	(*plane)[nb_obj].end = -1;
 	next_line(list, line);
 	return (0);
 }

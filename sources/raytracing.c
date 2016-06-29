@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:33:51 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/28 17:22:12 by                  ###   ########.fr       */
+/*   Updated: 2016/06/29 16:41:49 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,32 @@ t_ptd3d		ft_normalize(t_ptd3d v)
 	return (ft_make_ptd3d(v.x * i, v.y * i, v.z * i));
 }
 
-int		ft_intersection_cylindre(t_cylindre cyl, t_ray ray, int *t, double ray_size)
+int		ft_intersection_plane(t_plane plane, t_ray ray, int *t)
+{
+	float		D;
+	double		t0;
+	int			ret;
+	
+	ray.o = ft_make_ptd3d(ray.o.x - plane.x, ray.o.y - plane.y, ray.o.z - plane.z);
+	ret = 0;
+
+	if (ray.d.x + ray.d.y + ray.d.z == 0)
+	{
+		YOLO
+		return (ret);
+	}
+	t0 = -(ray.o.x + 0 * ray.o.y + 0 * ray.o.z -7) / (ray.d.x + 0 * ray.d.y + 0 * ray.d.z);
+
+	if (t0 > 0)
+	{
+		*t = t0;
+		ret = 1;
+	}
+	return (ret);
+
+}
+
+int		ft_intersection_cone(t_cone cone, t_ray ray, int *t)
 {
 	float		D;
 	double		t0;
@@ -29,11 +54,13 @@ int		ft_intersection_cylindre(t_cylindre cyl, t_ray ray, int *t, double ray_size
 	double		a;
 	double		b;
 	double		c;
+	double		z1;
+	double		z2;
 
-	ray.o = ft_make_ptd3d(ray.o.x - cyl.x, ray.o.y - cyl.y, ray.o.z - cyl.z);
-	a = (ray.d.x * ray.d.x) + (ray.d.z * ray.d.z);
-	b = (2 * ray.o.x * ray.d.x) + (2 * ray.o.z * ray.d.z);
-	c = (ray.o.x * ray.o.x) + (ray.o.z * ray.o.z) - (ray_size * ray_size);
+	ray.o = ft_make_ptd3d(ray.o.x - cone.x, ray.o.y - cone.y, ray.o.z - cone.z);
+	a = (cone.ray_size / 10) * (ray.d.x * ray.d.x) - (ray.d.y * ray.d.y) + (cone.ray_size / 10) * (ray.d.z * ray.d.z);
+	b = (cone.ray_size / 10) * (2 * ray.o.x * ray.d.x) - (2 * ray.o.y * ray.d.y) + (cone.ray_size / 10) * (2 * ray.o.z * ray.d.z);
+	c = (cone.ray_size / 10) * (ray.o.x * ray.o.x) - (ray.o.y * ray.o.y) + (cone.ray_size / 10) * (ray.o.z * ray.o.z) - 1;
 
 	D = (b * b) - 4 * a * c;
 
@@ -41,18 +68,62 @@ int		ft_intersection_cylindre(t_cylindre cyl, t_ray ray, int *t, double ray_size
 		return (0);
 	t0 = (-b + sqrt(D)) / (2 * a);
 	t1 = (-b - sqrt(D)) / (2 * a);
-	ret = 0;
 
-	if (t0 > 0.1 && t0 < *t)
+	z1 = ray.o.y + t0 * ray.d.y;
+	z2 = ray.o.y + t1 * ray.d.y;
+
+	ret = 0;
+	if (t0 > 0.1 && t0 < *t && z1 > -cone.height / 2 && z1 < cone.height / 2)
 	{
 		*t = t0;
 		ret = 1;
 	}
-	if (t1 > 0.1 && t1 < *t)
+	if (t1 > 0.1 && t1 < *t && z2 > -cone.height / 2 && z2 < cone.height / 2)
 	{
 		*t = t1;
 		ret = 1;
-	} 
+	}
+	return (ret);
+}
+
+int		ft_intersection_cylindre(t_cylindre cyl, t_ray ray, int *t)
+{
+	float		D;
+	double		t0;
+	double		t1;
+	int			ret;
+	double		a;
+	double		b;
+	double		c;
+	double		z1;
+	double		z2;
+
+	ray.o = ft_make_ptd3d(ray.o.x - cyl.x, ray.o.y - cyl.y, ray.o.z - cyl.z);
+	a = (ray.d.x * ray.d.x) + (ray.d.z * ray.d.z);
+	b = (2 * ray.o.x * ray.d.x) + (2 * ray.o.z * ray.d.z);
+	c = (ray.o.x * ray.o.x) + (ray.o.z * ray.o.z) - (cyl.ray_size * cyl.ray_size);
+
+	D = (b * b) - 4 * a * c;
+
+	if (D < 0)
+		return (0);
+	t0 = (-b + sqrt(D)) / (2 * a);
+	t1 = (-b - sqrt(D)) / (2 * a);
+
+	z1 = ray.o.y + t0 * ray.d.y;
+	z2 = ray.o.y + t1 * ray.d.y;
+
+	ret = 0;
+	if (t0 > 0.1 && t0 < *t && z1 > -cyl.height / 2 && z1 < cyl.height / 2)
+	{
+		*t = t0;
+		ret = 1;
+	}
+	if (t1 > 0.1 && t1 < *t && z2 > -cyl.height / 2 && z2 < cyl.height / 2)
+	{
+		*t = t1;
+		ret = 1;
+	}
 	return (ret);
 }
 
@@ -102,18 +173,31 @@ void	raytracing(int x, int y, t_env *env)
 	t_ray		ray;
 	t_sphere	sphere;
 	t_cylindre	cyl;
+	t_cone		cone;
+	t_plane		plane;
 	int			coef;
 	int			inter;
 
-	sphere.x = 0;
+	sphere.x = -13;
 	sphere.y = 0;
 	sphere.z = 30;
-	sphere.radius = 2;
+	sphere.radius = 5;
 
-	cyl.x = 30;
-	cyl.y = 30;
-	cyl.z = 300;
-	cyl.ray_size = 2;
+	cyl.x = 20;
+	cyl.y = 0;
+	cyl.z = 30;
+	cyl.ray_size = 3;
+	cyl.height = 10;
+
+	cone.x = 0;
+	cone.y = 0;
+	cone.z = 30;
+	cone.ray_size = 15;
+	cone.height = 20;
+
+	plane.x = 0;
+	plane.y = 0;
+	plane.z = 30;
 
 	A = ft_make_ptd3d(0, 0, 0);
 	B = ft_make_ptd3d(x - (W_WIDTH / 2), y - (W_HEIGHT / 2),
@@ -123,18 +207,31 @@ void	raytracing(int x, int y, t_env *env)
 	ray_dir = ft_normalize(ray_dir);
 	ray.o = A;
 	ray.d = ray_dir;
-	coef = 4000;
-	inter = ft_intersection_sphere(sphere, ray, &coef, sphere.radius);
-	int color = 0x22aa22;
+	int color = 0xff2200;
+
+		coef = 4000;
+	inter = ft_intersection_plane(plane, ray, &coef);
 	if ((inter > -1 || inter < -1) && coef < 4000)
 		ft_memcpy(env->img->pixels + x * env->img->format->BytesPerPixel +
 		y * env->img->pitch, &color, env->img->format->BytesPerPixel);
-	else
-	{
+	color = 435354;
+	coef = 4000;
+	inter = ft_intersection_sphere(sphere, ray, &coef, sphere.radius);
+	if ((inter > -1 || inter < -1) && coef < 4000)
+		ft_memcpy(env->img->pixels + x * env->img->format->BytesPerPixel +
+		y * env->img->pitch, &color, env->img->format->BytesPerPixel);
+	coef = 4000;
+	color = 0x00ff00;
+	inter = ft_intersection_cylindre(cyl, ray, &coef);
+	if ((inter > -1 || inter < -1) && coef < 4000)
+		ft_memcpy(env->img->pixels + x * env->img->format->BytesPerPixel +
+		y * env->img->pitch, &color, env->img->format->BytesPerPixel);
 		coef = 4000;
-		inter = ft_intersection_cylindre(cyl, ray, &coef, cyl.ray_size);
-		if ((inter > -1 || inter < -1) && coef < 4000)
-			ft_memcpy(env->img->pixels + x * env->img->format->BytesPerPixel +
-			y * env->img->pitch, &color, env->img->format->BytesPerPixel);
-	}
+	color = 0x0000ff;
+	inter = ft_intersection_cone(cone, ray, &coef);
+	if ((inter > -1 || inter < -1) && coef < 4000)
+		ft_memcpy(env->img->pixels + x * env->img->format->BytesPerPixel +
+		y * env->img->pitch, &color, env->img->format->BytesPerPixel);
+
+
 }

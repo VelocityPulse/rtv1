@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/19 12:16:13 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/24 12:18:31 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/06/29 14:29:16 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		analyse_cone_help(char *line, char **str, t_cone *cone)
 	return (1);
 }
 
-int		analyse_plan_help(char *line, char **str, t_plan *plan)
+int		analyse_plan_help(char *line, char **str, t_plane *plan)
 {
 	char	*pref;
 
