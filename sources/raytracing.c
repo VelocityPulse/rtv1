@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:33:51 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/29 16:41:49 by                  ###   ########.fr       */
+/*   Updated: 2016/07/05 11:53:40 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,29 @@ t_ptd3d		ft_normalize(t_ptd3d v)
 	return (ft_make_ptd3d(v.x * i, v.y * i, v.z * i));
 }
 
+t_vector		ft_normalizev(t_vector v)
+{
+	float	i;
+
+	i = 1 / sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
+	return (ft_make_vector(v.x * i, v.y * i, v.z * i));
+}
+
 int		ft_intersection_plane(t_plane plane, t_ray ray, int *t)
 {
 	float		D;
+	double		p;
 	double		t0;
 	int			ret;
-	
-	ray.o = ft_make_ptd3d(ray.o.x - plane.x, ray.o.y - plane.y, ray.o.z - plane.z);
+
 	ret = 0;
+//	ray.o = ft_make_ptd3d(ray.o.x + plane.x, ray.o.y + plane.y, ray.o.z + plane.z);
+//	plane.rot = ft_normalizev(plane.rot);
 
-	if (ray.d.x + ray.d.y + ray.d.z == 0)
-	{
-		YOLO
+	p = (plane.rot.x * ray.d.x) + (plane.rot.y * ray.d.y) + (plane.rot.z * ray.d.z);
+	if (!p)
 		return (ret);
-	}
-	t0 = -(ray.o.x + 0 * ray.o.y + 0 * ray.o.z -7) / (ray.d.x + 0 * ray.d.y + 0 * ray.d.z);
-
+	t0 = -((plane.rot.x * ray.o.x + plane.x) + (plane.rot.y * ray.o.y + plane.y) + (plane.rot.z * ray.o.z + plane.z)) / p;
 	if (t0 > 0)
 	{
 		*t = t0;
@@ -60,7 +67,7 @@ int		ft_intersection_cone(t_cone cone, t_ray ray, int *t)
 	ray.o = ft_make_ptd3d(ray.o.x - cone.x, ray.o.y - cone.y, ray.o.z - cone.z);
 	a = (cone.ray_size / 10) * (ray.d.x * ray.d.x) - (ray.d.y * ray.d.y) + (cone.ray_size / 10) * (ray.d.z * ray.d.z);
 	b = (cone.ray_size / 10) * (2 * ray.o.x * ray.d.x) - (2 * ray.o.y * ray.d.y) + (cone.ray_size / 10) * (2 * ray.o.z * ray.d.z);
-	c = (cone.ray_size / 10) * (ray.o.x * ray.o.x) - (ray.o.y * ray.o.y) + (cone.ray_size / 10) * (ray.o.z * ray.o.z) - 1;
+	c = (cone.ray_size / 10) * (ray.o.x * ray.o.x) - (ray.o.y * ray.o.y) + (cone.ray_size / 10) * (ray.o.z * ray.o.z);
 
 	D = (b * b) - 4 * a * c;
 
@@ -197,7 +204,8 @@ void	raytracing(int x, int y, t_env *env)
 
 	plane.x = 0;
 	plane.y = 0;
-	plane.z = 30;
+	plane.z = 40;
+	plane.rot = ft_make_vector(M_PI / 2, M_PI / 2, M_PI / 2);
 
 	A = ft_make_ptd3d(0, 0, 0);
 	B = ft_make_ptd3d(x - (W_WIDTH / 2), y - (W_HEIGHT / 2),
