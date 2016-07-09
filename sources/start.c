@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:26:38 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/19 12:43:22 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/07/06 13:22:45 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void		init_rt(t_rtv1 *rt, char *path)
 	rt->obj.plan = NULL;
 	rt->obj.cone = NULL;
 	rt->obj.cube = NULL;
+	rt->middle = ft_normalize(ft_make_ptd3d(
+	W_WIDTH / 2, W_HEIGHT / 2, -(W_WIDTH / -1.71198680182))); // tan(30/2)
 	open_scene(rt, path);
 	if (!(rt->env = ft_init_sdl(W_WIDTH, W_HEIGHT, "rtv1")))
 		exit_rt(rt);

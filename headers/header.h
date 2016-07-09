@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/21 12:16:14 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/29 14:28:02 by                  ###   ########.fr       */
+/*   Updated: 2016/07/09 15:42:31 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ typedef struct	s_rtv1
 	int			scanvalue[285];
 	t_cam		cam;
 	t_objects	obj;
+	t_ptd3d	middle;
 }				t_rtv1;
 
 t_env			*ft_init_sdl(const int w, const int h, const char *name);
@@ -172,6 +173,8 @@ int				ft_thread2(void *data);
 int				ft_thread3(void *data);
 int				ft_thread4(void *data);
 
-void			raytracing(int x, int y, t_env *env);
+void			raytracing(int x, int y, t_env *env, t_ptd3d middle);
+t_vector		ft_normalizev(t_vector v);
+t_ptd3d			ft_normalize(t_ptd3d v);
 
 #endif

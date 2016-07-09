@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 14:54:05 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/06/29 11:10:58 by                  ###   ########.fr       */
+/*   Updated: 2016/07/06 13:49:32 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ int		ft_thread1(void *data)
 	{
 		if (rt->t1 == 1)
 		{
-			ft_putstr("core 1\n");
+		usleep(5);
+//			ft_putstr("core 1\n");
 			x = -1;
 			while (++x <= mid_w)
 			{
 				y = -1;
 				while (++y <= mid_h)
-					raytracing(x, y, rt->env);
+					raytracing(x, y, rt->env, rt->middle);
 			}
 			rt->t1 = 0;
 		}
@@ -63,13 +64,14 @@ int		ft_thread2(void *data)
 	{
 		if (rt->t2 == 1)
 		{
-			ft_putstr("core 2\n");
+			usleep(15);
+//			ft_putstr("core 2\n");
 			x = mid_w;
 			while (++x < W_WIDTH)
 			{
 				y = -1;
 				while (++y <= mid_h)
-					raytracing(x, y, rt->env);
+					raytracing(x, y, rt->env, rt->middle);
 			}
 			rt->t2 = 0;
 		}
@@ -99,13 +101,14 @@ int		ft_thread3(void *data)
 	{
 		if (rt->t3 == 1)
 		{
-			ft_putstr("core 3\n");
+			usleep(25);
+//			ft_putstr("core 3\n");
 			x = -1;
 			while (++x <= mid_w)
 			{
 				y = mid_h;
 				while (++y < W_HEIGHT)
-					raytracing(x, y, rt->env);
+					raytracing(x, y, rt->env, rt->middle);
 			}
 			rt->t3 = 0;
 		}
@@ -135,13 +138,14 @@ int		ft_thread4(void *data)
 	{
 		if (rt->t4 == 1)
 		{
-			ft_putstr("core 4\n");
+			usleep(40);
+//			ft_putstr("core 4\n");
 			x = mid_w;
 			while (++x < W_WIDTH)
 			{
 				y = mid_h;
 				while (++y < W_HEIGHT)
-					raytracing(x, y, rt->env);
+					raytracing(x, y, rt->env, rt->middle);
 			}
 			rt->t4 = 0;
 		}

@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:33:51 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/07/05 11:53:40 by                  ###   ########.fr       */
+/*   Updated: 2016/07/09 15:41:42 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_vector		ft_normalizev(t_vector v)
 	return (ft_make_vector(v.x * i, v.y * i, v.z * i));
 }
 
-int		ft_intersection_plane(t_plane plane, t_ray ray, int *t)
+int		ft_intersection_plane(t_plane plane, t_ray ray, double *t)
 {
 	float		D;
 	double		p;
@@ -36,13 +36,16 @@ int		ft_intersection_plane(t_plane plane, t_ray ray, int *t)
 	int			ret;
 
 	ret = 0;
-//	ray.o = ft_make_ptd3d(ray.o.x + plane.x, ray.o.y + plane.y, ray.o.z + plane.z);
-//	plane.rot = ft_normalizev(plane.rot);
+	ray.o = ft_make_ptd3d(ray.o.x - plane.x, ray.o.y - plane.y, ray.o.z - plane.z);
+	plane.rot = ft_normalizev(plane.rot);
 
-	p = (plane.rot.x * ray.d.x) + (plane.rot.y * ray.d.y) + (plane.rot.z * ray.d.z);
+//	ray.o = ft_make_ptd3d(2, 3, 4);
+
+	p = (plane.rot.x * ray.d.x) - (plane.rot.y * ray.d.y) - (plane.rot.z * ray.d.z);
+	plane.rot = ft_normalizev(plane.rot);
 	if (!p)
 		return (ret);
-	t0 = -((plane.rot.x * ray.o.x + plane.x) + (plane.rot.y * ray.o.y + plane.y) + (plane.rot.z * ray.o.z + plane.z)) / p;
+	t0 = ((plane.rot.x * ray.o.x) - (plane.rot.y * ray.o.y) - (plane.rot.z * ray.o.z) + 2) / p;
 	if (t0 > 0)
 	{
 		*t = t0;
@@ -52,7 +55,7 @@ int		ft_intersection_plane(t_plane plane, t_ray ray, int *t)
 
 }
 
-int		ft_intersection_cone(t_cone cone, t_ray ray, int *t)
+int		ft_intersection_cone(t_cone cone, t_ray ray, double *t)
 {
 	float		D;
 	double		t0;
@@ -93,7 +96,7 @@ int		ft_intersection_cone(t_cone cone, t_ray ray, int *t)
 	return (ret);
 }
 
-int		ft_intersection_cylindre(t_cylindre cyl, t_ray ray, int *t)
+int		ft_intersection_cylindre(t_cylindre cyl, t_ray ray, double *t)
 {
 	float		D;
 	double		t0;
@@ -134,7 +137,7 @@ int		ft_intersection_cylindre(t_cylindre cyl, t_ray ray, int *t)
 	return (ret);
 }
 
-int		ft_intersection_sphere(t_sphere sphere, t_ray ray, int *t, double radius)
+int		ft_intersection_sphere(t_sphere sphere, t_ray ray, double *t, double radius)
 {
 	t_vector	dist;
 	float		D;
@@ -172,7 +175,12 @@ int		ft_intersection_sphere(t_sphere sphere, t_ray ray, int *t, double radius)
 	return (ret);
 }
 
-void	raytracing(int x, int y, t_env *env)
+double	dotproduct(t_ptd3d v1, t_ptd3d v2)
+{
+	return ((v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z));
+}
+
+void	raytracing(int x, int y, t_env *env, t_ptd3d middle)
 {
 	t_ptd3d		A;
 	t_ptd3d		B;
@@ -182,10 +190,12 @@ void	raytracing(int x, int y, t_env *env)
 	t_cylindre	cyl;
 	t_cone		cone;
 	t_plane		plane;
-	int			coef;
+	double		coef;
 	int			inter;
+	double		ray_angle;
+	double		scale;
 
-	sphere.x = -13;
+	sphere.x = -20;
 	sphere.y = 0;
 	sphere.z = 30;
 	sphere.radius = 5;
@@ -202,19 +212,31 @@ void	raytracing(int x, int y, t_env *env)
 	cone.ray_size = 15;
 	cone.height = 20;
 
-	plane.x = 0;
+	plane.x = 1;
 	plane.y = 0;
-	plane.z = 40;
-	plane.rot = ft_make_vector(M_PI / 2, M_PI / 2, M_PI / 2);
+	plane.z = 0;
+	plane.rot = ft_make_vector(1, 1, 1);
 
 	A = ft_make_ptd3d(0, 0, 0);
 	B = ft_make_ptd3d(x - (W_WIDTH / 2), y - (W_HEIGHT / 2),
-			-(W_WIDTH / (2 * tan(30/2))));
+		-(W_WIDTH / -1.71198680182)); // 2 * tan(30/2)
 	B = ft_normalize(B);
 	ray_dir = ft_make_ptd3d(B.x - A.x, B.y - A.y, B.z - A.z);
-	ray_dir = ft_normalize(ray_dir);
-	ray.o = A;
+	ray_angle = dotproduct(ray_dir, middle);
+	double C = sqrt(B.x * B.x + B.y * B.y);
+
+	scale = acos(ray_angle);
+//	scale = (60 / (W_WIDTH / 2)) * (x - (W_WIDTH / 2));
+//	scale = acos(ray_angle);
+/*	printf("%f\n", scale);
+	BN
+	usleep(200);
+	exit(0);
+*/	ray.o = A;
 	ray.d = ray_dir;
+	ray.d.x *= scale;
+	ray.d.y *= scale;
+	ray.d.z *= scale;
 	int color = 0xff2200;
 
 		coef = 4000;
