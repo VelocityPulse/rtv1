@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:33:51 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/07/09 15:41:42 by                  ###   ########.fr       */
+/*   Updated: 2016/08/10 12:24:04 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,13 +226,9 @@ void	raytracing(int x, int y, t_env *env, t_ptd3d middle)
 	double C = sqrt(B.x * B.x + B.y * B.y);
 
 	scale = acos(ray_angle);
-//	scale = (60 / (W_WIDTH / 2)) * (x - (W_WIDTH / 2));
-//	scale = acos(ray_angle);
-/*	printf("%f\n", scale);
-	BN
-	usleep(200);
-	exit(0);
-*/	ray.o = A;
+
+	
+	ray.o = A;
 	ray.d = ray_dir;
 	ray.d.x *= scale;
 	ray.d.y *= scale;
